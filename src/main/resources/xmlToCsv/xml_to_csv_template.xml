@@ -18,9 +18,11 @@
 <template xmlns="http://ws.apache.org/ns/synapse" name="xmlToCsv">
     <parameter name="customHeader" description="Comma separated string of header for Csv payload."/>
     <parameter name="suppressEscaping" description="Whether to suppress Escape Characters in the output Csv payload"/>
+    <parameter name="applyQuotes" description="Whether to apply quotes for the Fields with line breaks, commas, or double quotes. Default is false."/>
     <sequence>
         <property name="customHeader" expression="$func:customHeader"/>
         <property name="suppressEscaping" expression="$func:suppressEscaping"/>
+        <property name="applyQuotes" expression="$func:applyQuotes"/>
         <class name="org.wso2.carbon.module.csv.XmlToCsvTransformer"/>
     </sequence>
 </template>

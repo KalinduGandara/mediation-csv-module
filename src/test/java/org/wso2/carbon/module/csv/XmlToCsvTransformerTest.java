@@ -73,9 +73,10 @@ class XmlToCsvTransformerTest {
 
         lenient().when(mc.lookupTemplateParameter(ParameterKey.CUSTOM_HEADER)).thenReturn("");
         lenient().when(mc.lookupTemplateParameter(ParameterKey.SUPPRESS_ESCAPE_CHARACTERS)).thenReturn("false");
+        lenient().when(mc.lookupTemplateParameter(ParameterKey.APPLY_QUOTES)).thenReturn("false");
         when(mc.getRootXmlElement()).thenReturn(xmlPayload.cloneOMElement());
         when(mc.getXmlChildElementsStream()).thenReturn(childElementStream);
-        when(mc.collectToCsv(new String[]{"id", "firstName", "lastName"}, false)).thenReturn(csvCollector);
+        when(mc.collectToCsv(new String[]{"id", "firstName", "lastName"},false, false)).thenReturn(csvCollector);
 
         ArgumentCaptor<String> payloadSetArgumentCaptor = ArgumentCaptor.forClass(String.class);
 
@@ -125,8 +126,9 @@ class XmlToCsvTransformerTest {
 
         lenient().when(mc.lookupTemplateParameter(ParameterKey.CUSTOM_HEADER)).thenReturn(header);
         lenient().when(mc.lookupTemplateParameter(ParameterKey.SUPPRESS_ESCAPE_CHARACTERS)).thenReturn("false");
+        lenient().when(mc.lookupTemplateParameter(ParameterKey.APPLY_QUOTES)).thenReturn("false");
         when(mc.getXmlChildElementsStream()).thenReturn(childElementStream);
-        when(mc.collectToCsv(headerArray, false)).thenReturn(csvCollector);
+        when(mc.collectToCsv(headerArray,false, false)).thenReturn(csvCollector);
 
         ArgumentCaptor<String> payloadSetArgumentCaptor = ArgumentCaptor.forClass(String.class);
 

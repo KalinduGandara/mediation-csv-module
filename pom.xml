@@ -41,7 +41,7 @@
         <bouncycastle.version>1.55</bouncycastle.version>
         <rampart.apache.version>1.6.1-wso2v18</rampart.apache.version>
         <rampart.wso2.version>1.6.1.wso2v18</rampart.wso2.version>
-        <module.core.version>1.0.2</module.core.version>
+        <module.core.version>1.0.3</module.core.version>
         <junit-jupiter.version>5.6.2</junit-jupiter.version>
         <mockito.version>2.21.0</mockito.version>
         <mockito-junit.version>2.23.0</mockito-junit.version>

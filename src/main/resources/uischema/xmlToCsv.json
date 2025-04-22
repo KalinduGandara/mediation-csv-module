@@ -46,6 +46,17 @@
                     "required": "false",
                     "helpTip": "Specify whether to suppress all escaping in the output Csv payload. Default is false. (ie. Escape characters will be present)"
                   }
+                },
+                {
+                  "type": "attribute",
+                  "value": {
+                    "name": "applyQuotes",
+                    "displayName": "Apply Quotes",
+                    "inputType": "booleanOrExpression",
+                    "defaultValue": "false",
+                    "required": "false",
+                    "helpTip": "Specify whether to apply quotes for the Fields with line breaks, commas, or double quotes. Default is false."
+                  }
                 }
               ]
             }

@@ -28,6 +28,7 @@
     <parameter name="customValueSeparator"
                description="Specify a value separator for CSV output. Default is comma ( , )"/>
     <parameter name="suppressEscaping" description="Whether to suppress Escape Characters in the output Csv payload"/>
+    <parameter name="applyQuotes" description="Whether to apply quotes for the Fields with line breaks, commas, or double quotes. Default is false."/>
     <sequence>
 
         <property name="headerPresent"  expression="$func:headerPresent"/>
@@ -40,6 +41,7 @@
         <property name="columnOrdering" expression="$func:columnOrdering"/>
         <property name="customValueSeparator" expression="$func:customValueSeparator"/>
         <property name="suppressEscaping" expression="$func:suppressEscaping"/>
+        <property name="applyQuotes" expression="$func:applyQuotes"/>
         <class name="org.wso2.carbon.module.csv.CsvToCsvTransformer"/>
     </sequence>
 </template>

@@ -39,6 +39,7 @@ public class XmlToCsvTransformer extends SimpleMediator {
     @Override
     public void mediate(SimpleMessageContext mc) {
         final boolean suppressEscapeCharacter = getBooleanParam(mc, ParameterKey.SUPPRESS_ESCAPE_CHARACTERS);
+        final boolean applyQuotesToAll = getBooleanParam(mc, ParameterKey.APPLY_QUOTES);
         String[] header = getHeader(mc);
         mc.getXmlChildElementsStream()
                 .map(omElement -> {
@@ -50,7 +51,7 @@ public class XmlToCsvTransformer extends SimpleMediator {
                         csvEntry.add(childText);
                     }
                     return csvEntry.toArray(new String[0]);
-                }).collect(mc.collectToCsv(header, suppressEscapeCharacter));
+                }).collect(mc.collectToCsv(header, suppressEscapeCharacter, applyQuotesToAll));
     }
 
     /**

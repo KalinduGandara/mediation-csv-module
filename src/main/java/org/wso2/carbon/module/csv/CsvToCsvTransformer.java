@@ -32,11 +32,7 @@ import java.util.stream.Stream;
 
 import static org.wso2.carbon.module.csv.util.CsvTransformer.resolveColumnIndex;
 import static org.wso2.carbon.module.csv.util.CsvTransformer.skipColumnsSingleRow;
-import static org.wso2.carbon.module.csv.util.PropertyReader.getBooleanParam;
-import static org.wso2.carbon.module.csv.util.PropertyReader.getCharParam;
-import static org.wso2.carbon.module.csv.util.PropertyReader.getEnumParam;
-import static org.wso2.carbon.module.csv.util.PropertyReader.getIntegerParam;
-import static org.wso2.carbon.module.csv.util.PropertyReader.getStringParam;
+import static org.wso2.carbon.module.csv.util.PropertyReader.*;
 
 /**
  * Transformer to transform CSV content to another CSV content.
@@ -59,6 +55,7 @@ public class CsvToCsvTransformer extends SimpleMediator {
         final Optional<String> customHeader = getStringParam(mc, ParameterKey.CUSTOM_HEADER);
         final Optional<Character> customValueSeparator = getCharParam(mc, ParameterKey.CUSTOM_VALUE_SEPARATOR);
         final boolean suppressEscapeCharacters = getBooleanParam(mc, ParameterKey.SUPPRESS_ESCAPE_CHARACTERS);
+        final boolean applyQuotes = getBooleanParam(mc, ParameterKey.APPLY_QUOTES);
 
         CsvPayloadInfo payloadInfo = new CsvPayloadInfo();
         if (headerAvailability == HeaderAvailability.PRESENT || customHeader.isPresent()) {
@@ -91,7 +88,7 @@ public class CsvToCsvTransformer extends SimpleMediator {
                     payloadInfo.getFirstRow(), resultHeader);
         }
         csvArrayStream
-                .collect(mc.collectToCsv(resultHeader, customValueSeparator.orElse(Constants.DEFAULT_CSV_SEPARATOR), suppressEscapeCharacters));
+                .collect(mc.collectToCsv(resultHeader, customValueSeparator.orElse(Constants.DEFAULT_CSV_SEPARATOR), suppressEscapeCharacters, applyQuotes));
     }
 
     /**
@@ -106,9 +103,10 @@ public class CsvToCsvTransformer extends SimpleMediator {
 
     /**
      * Reorder the given CSV.
-     * @param orderByColumn Ordering column index.
+     *
+     * @param orderByColumn  Ordering column index.
      * @param csvArrayStream CSV array stream.
-     * @param orderingType Ordering type.
+     * @param orderingType   Ordering type.
      * @return Ordered CSV array stream.
      */
     private Stream<String[]> reorder(int orderByColumn, Stream<String[]> csvArrayStream, OrderingType orderingType) {
@@ -128,7 +126,8 @@ public class CsvToCsvTransformer extends SimpleMediator {
 
     /**
      * Returns the value for the given cell. Returns empty if cell not found.
-     * @param row Row of the cell.
+     *
+     * @param row   Row of the cell.
      * @param index Index of the cell in the given row.
      * @return Value of the given cell.
      */

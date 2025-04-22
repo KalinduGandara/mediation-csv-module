@@ -53,7 +53,7 @@ class CsvToCsvTransformerTest {
 
         final CsvCollector csvCollector = new CsvCollector(mc, null, Constants.DEFAULT_CSV_SEPARATOR);
         when(mc.getCsvArrayStream(0, Constants.DEFAULT_CSV_SEPARATOR)).thenReturn(csvPayload.stream());
-        when(mc.collectToCsv(null, Constants.DEFAULT_CSV_SEPARATOR, false)).thenReturn(csvCollector);
+        when(mc.collectToCsv(null, Constants.DEFAULT_CSV_SEPARATOR, false,false)).thenReturn(csvCollector);
         ArgumentCaptor<String> payloadSetArgumentCaptor = ArgumentCaptor.forClass(String.class);
 
         CsvToCsvTransformer csvToCsvTransformer = new CsvToCsvTransformer();
@@ -82,7 +82,7 @@ class CsvToCsvTransformerTest {
         when(mc.getCsvArrayStream(1, Constants.DEFAULT_CSV_SEPARATOR)).thenReturn(csvPayload.subList(1, 3).stream());
         when(mc.getCsvPayloadInfo(Constants.DEFAULT_CSV_SEPARATOR))
                 .thenReturn(new CsvPayloadInfo(csvPayload.get(0), 3, csvPayload));
-        when(mc.collectToCsv(csvPayload.get(0), Constants.DEFAULT_CSV_SEPARATOR, false)).thenReturn(csvCollector);
+        when(mc.collectToCsv(csvPayload.get(0), Constants.DEFAULT_CSV_SEPARATOR, false,false)).thenReturn(csvCollector);
         ArgumentCaptor<String> payloadSetArgumentCaptor = ArgumentCaptor.forClass(String.class);
 
         CsvToCsvTransformer csvToCsvTransformer = new CsvToCsvTransformer();
@@ -113,7 +113,7 @@ class CsvToCsvTransformerTest {
         when(mc.getCsvArrayStream(1, Constants.DEFAULT_CSV_SEPARATOR)).thenReturn(csvPayload.subList(1, 3).stream());
         when(mc.getCsvPayloadInfo(Constants.DEFAULT_CSV_SEPARATOR))
                 .thenReturn(new CsvPayloadInfo(csvPayload.get(0), 3, csvPayload));
-        when(mc.collectToCsv(new String[]{"p", "q", "r"}, Constants.DEFAULT_CSV_SEPARATOR, false)).thenReturn(csvCollector);
+        when(mc.collectToCsv(new String[]{"p", "q", "r"}, Constants.DEFAULT_CSV_SEPARATOR, false,false)).thenReturn(csvCollector);
         ArgumentCaptor<String> payloadSetArgumentCaptor = ArgumentCaptor.forClass(String.class);
 
         CsvToCsvTransformer csvToCsvTransformer = new CsvToCsvTransformer();
@@ -143,7 +143,7 @@ class CsvToCsvTransformerTest {
         when(mc.getCsvArrayStream(1, Constants.DEFAULT_CSV_SEPARATOR)).thenReturn(csvPayload.subList(1, 3).stream());
         when(mc.getCsvPayloadInfo(Constants.DEFAULT_CSV_SEPARATOR))
                 .thenReturn(new CsvPayloadInfo(csvPayload.get(0), 3, csvPayload));
-        when(mc.collectToCsv(null, Constants.DEFAULT_CSV_SEPARATOR, false)).thenReturn(csvCollector);
+        when(mc.collectToCsv(null, Constants.DEFAULT_CSV_SEPARATOR, false,false)).thenReturn(csvCollector);
         ArgumentCaptor<String> payloadSetArgumentCaptor = ArgumentCaptor.forClass(String.class);
 
         CsvToCsvTransformer csvToCsvTransformer = new CsvToCsvTransformer();
@@ -174,7 +174,7 @@ class CsvToCsvTransformerTest {
         when(mc.getCsvArrayStream(1, Constants.DEFAULT_CSV_SEPARATOR)).thenReturn(csvPayload.subList(1, 3).stream());
         when(mc.getCsvPayloadInfo(Constants.DEFAULT_CSV_SEPARATOR))
                 .thenReturn(new CsvPayloadInfo(csvPayload.get(0), 3, csvPayload));
-        when(mc.collectToCsv(new String[]{"p", "q", "r"}, Constants.DEFAULT_CSV_SEPARATOR, false)).thenReturn(csvCollector);
+        when(mc.collectToCsv(new String[]{"p", "q", "r"}, Constants.DEFAULT_CSV_SEPARATOR, false,false)).thenReturn(csvCollector);
         ArgumentCaptor<String> payloadSetArgumentCaptor = ArgumentCaptor.forClass(String.class);
 
         CsvToCsvTransformer csvToCsvTransformer = new CsvToCsvTransformer();
@@ -202,7 +202,7 @@ class CsvToCsvTransformerTest {
         lenient().when(mc.lookupTemplateParameter(ParameterKey.IS_HEADER_PRESENT)).thenReturn("Absent");
         lenient().when(mc.lookupTemplateParameter(ParameterKey.CUSTOM_HEADER)).thenReturn("p,q,r");
         when(mc.getCsvArrayStream(0, Constants.DEFAULT_CSV_SEPARATOR)).thenReturn(csvPayload.stream());
-        when(mc.collectToCsv(new String[]{"p", "q", "r"}, Constants.DEFAULT_CSV_SEPARATOR, false)).thenReturn(csvCollector);
+        when(mc.collectToCsv(new String[]{"p", "q", "r"}, Constants.DEFAULT_CSV_SEPARATOR, false,false)).thenReturn(csvCollector);
         ArgumentCaptor<String> payloadSetArgumentCaptor = ArgumentCaptor.forClass(String.class);
 
         CsvToCsvTransformer csvToCsvTransformer = new CsvToCsvTransformer();
@@ -228,7 +228,7 @@ class CsvToCsvTransformerTest {
 
         lenient().when(mc.lookupTemplateParameter(ParameterKey.IS_HEADER_PRESENT)).thenReturn("Absent");
         when(mc.getCsvArrayStream(0, Constants.DEFAULT_CSV_SEPARATOR)).thenReturn(csvPayload.stream());
-        when(mc.collectToCsv(null, Constants.DEFAULT_CSV_SEPARATOR, false)).thenReturn(csvCollector);
+        when(mc.collectToCsv(null, Constants.DEFAULT_CSV_SEPARATOR, false,false)).thenReturn(csvCollector);
         ArgumentCaptor<String> payloadSetArgumentCaptor = ArgumentCaptor.forClass(String.class);
 
         CsvToCsvTransformer csvToCsvTransformer = new CsvToCsvTransformer();
@@ -253,7 +253,7 @@ class CsvToCsvTransformerTest {
 
         lenient().when(mc.lookupTemplateParameter(ParameterKey.ORDER_BY_COLUMN)).thenReturn("2");
         when(mc.getCsvArrayStream(0, Constants.DEFAULT_CSV_SEPARATOR)).thenReturn(csvPayload.stream());
-        when(mc.collectToCsv(null, Constants.DEFAULT_CSV_SEPARATOR, false)).thenReturn(csvCollector);
+        when(mc.collectToCsv(null, Constants.DEFAULT_CSV_SEPARATOR, false,false)).thenReturn(csvCollector);
         ArgumentCaptor<String> payloadSetArgumentCaptor = ArgumentCaptor.forClass(String.class);
 
         CsvToCsvTransformer csvToCsvTransformer = new CsvToCsvTransformer();
@@ -279,7 +279,7 @@ class CsvToCsvTransformerTest {
         lenient().when(mc.lookupTemplateParameter(ParameterKey.ORDER_BY_COLUMN)).thenReturn("2");
         lenient().when(mc.lookupTemplateParameter(ParameterKey.SORT_COLUMNS_BY_ORDERING)).thenReturn("Ascending");
         when(mc.getCsvArrayStream(0, Constants.DEFAULT_CSV_SEPARATOR)).thenReturn(csvPayload.stream());
-        when(mc.collectToCsv(null, Constants.DEFAULT_CSV_SEPARATOR, false)).thenReturn(csvCollector);
+        when(mc.collectToCsv(null, Constants.DEFAULT_CSV_SEPARATOR, false,false)).thenReturn(csvCollector);
         ArgumentCaptor<String> payloadSetArgumentCaptor = ArgumentCaptor.forClass(String.class);
 
         CsvToCsvTransformer csvToCsvTransformer = new CsvToCsvTransformer();
@@ -305,7 +305,7 @@ class CsvToCsvTransformerTest {
         lenient().when(mc.lookupTemplateParameter(ParameterKey.ORDER_BY_COLUMN)).thenReturn("2");
         lenient().when(mc.lookupTemplateParameter(ParameterKey.SORT_COLUMNS_BY_ORDERING)).thenReturn("Descending");
         when(mc.getCsvArrayStream(0, Constants.DEFAULT_CSV_SEPARATOR)).thenReturn(csvPayload.stream());
-        when(mc.collectToCsv(null, Constants.DEFAULT_CSV_SEPARATOR, false)).thenReturn(csvCollector);
+        when(mc.collectToCsv(null, Constants.DEFAULT_CSV_SEPARATOR, false,false)).thenReturn(csvCollector);
         ArgumentCaptor<String> payloadSetArgumentCaptor = ArgumentCaptor.forClass(String.class);
 
         CsvToCsvTransformer csvToCsvTransformer = new CsvToCsvTransformer();
@@ -334,7 +334,7 @@ class CsvToCsvTransformerTest {
         when(mc.getCsvArrayStream(1, Constants.DEFAULT_CSV_SEPARATOR)).thenReturn(csvPayload.subList(1, 3).stream());
         when(mc.getCsvPayloadInfo(Constants.DEFAULT_CSV_SEPARATOR))
                 .thenReturn(new CsvPayloadInfo(csvPayload.get(0), 3, csvPayload));
-        when(mc.collectToCsv(csvPayload.get(0), Constants.DEFAULT_CSV_SEPARATOR, false)).thenReturn(csvCollector);
+        when(mc.collectToCsv(csvPayload.get(0), Constants.DEFAULT_CSV_SEPARATOR, false,false)).thenReturn(csvCollector);
         ArgumentCaptor<String> payloadSetArgumentCaptor = ArgumentCaptor.forClass(String.class);
 
         CsvToCsvTransformer csvToCsvTransformer = new CsvToCsvTransformer();
@@ -365,7 +365,7 @@ class CsvToCsvTransformerTest {
         when(mc.getCsvArrayStream(1, Constants.DEFAULT_CSV_SEPARATOR)).thenReturn(csvPayload.subList(1, 3).stream());
         when(mc.getCsvPayloadInfo(Constants.DEFAULT_CSV_SEPARATOR))
                 .thenReturn(new CsvPayloadInfo(csvPayload.get(0), 3, csvPayload));
-        when(mc.collectToCsv(null, Constants.DEFAULT_CSV_SEPARATOR, false)).thenReturn(csvCollector);
+        when(mc.collectToCsv(null, Constants.DEFAULT_CSV_SEPARATOR, false,false)).thenReturn(csvCollector);
         ArgumentCaptor<String> payloadSetArgumentCaptor = ArgumentCaptor.forClass(String.class);
 
         CsvToCsvTransformer csvToCsvTransformer = new CsvToCsvTransformer();
@@ -394,7 +394,7 @@ class CsvToCsvTransformerTest {
         when(mc.getCsvArrayStream(1, Constants.DEFAULT_CSV_SEPARATOR)).thenReturn(csvPayload.subList(1, 3).stream());
         when(mc.getCsvPayloadInfo(Constants.DEFAULT_CSV_SEPARATOR))
                 .thenReturn(new CsvPayloadInfo(csvPayload.get(0), 3, csvPayload));
-        when(mc.collectToCsv(csvPayload.get(0), Constants.DEFAULT_CSV_SEPARATOR, false)).thenReturn(csvCollector);
+        when(mc.collectToCsv(csvPayload.get(0), Constants.DEFAULT_CSV_SEPARATOR, false,false)).thenReturn(csvCollector);
         ArgumentCaptor<String> payloadSetArgumentCaptor = ArgumentCaptor.forClass(String.class);
 
         CsvToCsvTransformer csvToCsvTransformer = new CsvToCsvTransformer();
@@ -424,7 +424,7 @@ class CsvToCsvTransformerTest {
         when(mc.getCsvArrayStream(1, Constants.DEFAULT_CSV_SEPARATOR)).thenReturn(csvPayload.subList(1, 3).stream());
         when(mc.getCsvPayloadInfo(Constants.DEFAULT_CSV_SEPARATOR))
                 .thenReturn(new CsvPayloadInfo(csvPayload.get(0), 3, csvPayload));
-        when(mc.collectToCsv(csvPayload.get(0), Constants.DEFAULT_CSV_SEPARATOR, false)).thenReturn(csvCollector);
+        when(mc.collectToCsv(csvPayload.get(0), Constants.DEFAULT_CSV_SEPARATOR, false,false)).thenReturn(csvCollector);
         ArgumentCaptor<String> payloadSetArgumentCaptor = ArgumentCaptor.forClass(String.class);
 
         CsvToCsvTransformer csvToCsvTransformer = new CsvToCsvTransformer();
@@ -455,7 +455,7 @@ class CsvToCsvTransformerTest {
         when(mc.getCsvArrayStream(1, Constants.DEFAULT_CSV_SEPARATOR)).thenReturn(csvPayload.subList(1, 3).stream());
         when(mc.getCsvPayloadInfo(Constants.DEFAULT_CSV_SEPARATOR))
                 .thenReturn(new CsvPayloadInfo(csvPayload.get(0), 3, csvPayload));
-        when(mc.collectToCsv(null, Constants.DEFAULT_CSV_SEPARATOR, false)).thenReturn(csvCollector);
+        when(mc.collectToCsv(null, Constants.DEFAULT_CSV_SEPARATOR, false,false)).thenReturn(csvCollector);
         ArgumentCaptor<String> payloadSetArgumentCaptor = ArgumentCaptor.forClass(String.class);
 
         CsvToCsvTransformer csvToCsvTransformer = new CsvToCsvTransformer();
@@ -480,7 +480,7 @@ class CsvToCsvTransformerTest {
 
         lenient().when(mc.lookupTemplateParameter(ParameterKey.DATA_ROWS_TO_SKIP)).thenReturn("1");
         when(mc.getCsvArrayStream(1, Constants.DEFAULT_CSV_SEPARATOR)).thenReturn(csvPayload.subList(1, 2).stream());
-        when(mc.collectToCsv(null, Constants.DEFAULT_CSV_SEPARATOR, false)).thenReturn(csvCollector);
+        when(mc.collectToCsv(null, Constants.DEFAULT_CSV_SEPARATOR, false,false)).thenReturn(csvCollector);
         ArgumentCaptor<String> payloadSetArgumentCaptor = ArgumentCaptor.forClass(String.class);
 
         CsvToCsvTransformer csvToCsvTransformer = new CsvToCsvTransformer();
@@ -508,7 +508,7 @@ class CsvToCsvTransformerTest {
         when(mc.getCsvArrayStream(2, Constants.DEFAULT_CSV_SEPARATOR)).thenReturn(csvPayload.subList(2, 3).stream());
         when(mc.getCsvPayloadInfo(Constants.DEFAULT_CSV_SEPARATOR))
                 .thenReturn(new CsvPayloadInfo(csvPayload.get(0), 3, csvPayload));
-        when(mc.collectToCsv(csvPayload.get(0), Constants.DEFAULT_CSV_SEPARATOR, false)).thenReturn(csvCollector);
+        when(mc.collectToCsv(csvPayload.get(0), Constants.DEFAULT_CSV_SEPARATOR, false,false)).thenReturn(csvCollector);
         ArgumentCaptor<String> payloadSetArgumentCaptor = ArgumentCaptor.forClass(String.class);
 
         CsvToCsvTransformer csvToCsvTransformer = new CsvToCsvTransformer();
@@ -538,7 +538,7 @@ class CsvToCsvTransformerTest {
         when(mc.getCsvArrayStream(2, Constants.DEFAULT_CSV_SEPARATOR)).thenReturn(csvPayload.subList(2, 3).stream());
         when(mc.getCsvPayloadInfo(Constants.DEFAULT_CSV_SEPARATOR))
                 .thenReturn(new CsvPayloadInfo(csvPayload.get(0), 3, csvPayload));
-        when(mc.collectToCsv(null, Constants.DEFAULT_CSV_SEPARATOR, false)).thenReturn(csvCollector);
+        when(mc.collectToCsv(null, Constants.DEFAULT_CSV_SEPARATOR, false,false)).thenReturn(csvCollector);
         ArgumentCaptor<String> payloadSetArgumentCaptor = ArgumentCaptor.forClass(String.class);
 
         CsvToCsvTransformer csvToCsvTransformer = new CsvToCsvTransformer();
@@ -569,7 +569,7 @@ class CsvToCsvTransformerTest {
         when(mc.getCsvArrayStream(2, Constants.DEFAULT_CSV_SEPARATOR)).thenReturn(csvPayload.subList(2, 3).stream());
         when(mc.getCsvPayloadInfo(Constants.DEFAULT_CSV_SEPARATOR))
                 .thenReturn(new CsvPayloadInfo(csvPayload.get(0), 3, csvPayload));
-        when(mc.collectToCsv(new String[]{"p", "q", "r"}, Constants.DEFAULT_CSV_SEPARATOR, false)).thenReturn(csvCollector);
+        when(mc.collectToCsv(new String[]{"p", "q", "r"}, Constants.DEFAULT_CSV_SEPARATOR, false,false)).thenReturn(csvCollector);
         ArgumentCaptor<String> payloadSetArgumentCaptor = ArgumentCaptor.forClass(String.class);
 
         CsvToCsvTransformer csvToCsvTransformer = new CsvToCsvTransformer();
@@ -595,7 +595,7 @@ class CsvToCsvTransformerTest {
 
         lenient().when(mc.lookupTemplateParameter(ParameterKey.VALUE_SEPARATOR)).thenReturn("#");
         when(mc.getCsvArrayStream(0, '#')).thenReturn(csvPayload.stream());
-        when(mc.collectToCsv(null, ',', false)).thenReturn(csvCollector);
+        when(mc.collectToCsv(null, ',', false,false)).thenReturn(csvCollector);
         ArgumentCaptor<String> payloadSetArgumentCaptor = ArgumentCaptor.forClass(String.class);
 
         CsvToCsvTransformer csvToCsvTransformer = new CsvToCsvTransformer();
@@ -624,7 +624,7 @@ class CsvToCsvTransformerTest {
         lenient().when(mc.lookupTemplateParameter(ParameterKey.IS_HEADER_PRESENT)).thenReturn("Present");
         when(mc.getCsvArrayStream(1, '#')).thenReturn(csvPayload.subList(1, 3).stream());
         when(mc.getCsvPayloadInfo('#')).thenReturn(new CsvPayloadInfo(csvPayload.get(0), 3, csvPayload));
-        when(mc.collectToCsv(csvPayload.get(0), ',', false)).thenReturn(csvCollector);
+        when(mc.collectToCsv(csvPayload.get(0), ',', false,false)).thenReturn(csvCollector);
         ArgumentCaptor<String> payloadSetArgumentCaptor = ArgumentCaptor.forClass(String.class);
 
         CsvToCsvTransformer csvToCsvTransformer = new CsvToCsvTransformer();
@@ -650,7 +650,7 @@ class CsvToCsvTransformerTest {
 
         lenient().when(mc.lookupTemplateParameter(ParameterKey.COLUMNS_TO_SKIP)).thenReturn("2");
         when(mc.getCsvArrayStream(0, Constants.DEFAULT_CSV_SEPARATOR)).thenReturn(csvPayload.stream());
-        when(mc.collectToCsv(null, Constants.DEFAULT_CSV_SEPARATOR, false)).thenReturn(csvCollector);
+        when(mc.collectToCsv(null, Constants.DEFAULT_CSV_SEPARATOR, false,false)).thenReturn(csvCollector);
         ArgumentCaptor<String> payloadSetArgumentCaptor = ArgumentCaptor.forClass(String.class);
 
         CsvToCsvTransformer csvToCsvTransformer = new CsvToCsvTransformer();
@@ -680,7 +680,7 @@ class CsvToCsvTransformerTest {
                 .thenReturn(csvPayload.subList(1, 3).stream());
         when(mc.getCsvPayloadInfo(Constants.DEFAULT_CSV_SEPARATOR))
                 .thenReturn(new CsvPayloadInfo(csvPayload.get(0), 3, csvPayload));
-        when(mc.collectToCsv(new String[]{"a", "c"}, Constants.DEFAULT_CSV_SEPARATOR, false)).thenReturn(csvCollector);
+        when(mc.collectToCsv(new String[]{"a", "c"}, Constants.DEFAULT_CSV_SEPARATOR, false,false)).thenReturn(csvCollector);
         ArgumentCaptor<String> payloadSetArgumentCaptor = ArgumentCaptor.forClass(String.class);
 
         CsvToCsvTransformer csvToCsvTransformer = new CsvToCsvTransformer();
@@ -712,7 +712,7 @@ class CsvToCsvTransformerTest {
                 .thenReturn(csvPayload.subList(1, 3).stream());
         when(mc.getCsvPayloadInfo(Constants.DEFAULT_CSV_SEPARATOR))
                 .thenReturn(new CsvPayloadInfo(csvPayload.get(0), 3, csvPayload));
-        when(mc.collectToCsv(null, Constants.DEFAULT_CSV_SEPARATOR, false)).thenReturn(csvCollector);
+        when(mc.collectToCsv(null, Constants.DEFAULT_CSV_SEPARATOR, false,false)).thenReturn(csvCollector);
         ArgumentCaptor<String> payloadSetArgumentCaptor = ArgumentCaptor.forClass(String.class);
 
         CsvToCsvTransformer csvToCsvTransformer = new CsvToCsvTransformer();
@@ -742,7 +742,7 @@ class CsvToCsvTransformerTest {
                 .thenReturn(csvPayload.subList(1, 3).stream());
         when(mc.getCsvPayloadInfo(Constants.DEFAULT_CSV_SEPARATOR))
                 .thenReturn(new CsvPayloadInfo(csvPayload.get(0), 3, csvPayload));
-        when(mc.collectToCsv(new String[]{"a", "c"}, Constants.DEFAULT_CSV_SEPARATOR, false)).thenReturn(csvCollector);
+        when(mc.collectToCsv(new String[]{"a", "c"}, Constants.DEFAULT_CSV_SEPARATOR, false,false)).thenReturn(csvCollector);
         ArgumentCaptor<String> payloadSetArgumentCaptor = ArgumentCaptor.forClass(String.class);
 
         CsvToCsvTransformer csvToCsvTransformer = new CsvToCsvTransformer();
@@ -774,7 +774,7 @@ class CsvToCsvTransformerTest {
                 .thenReturn(csvPayload.subList(1, 3).stream());
         when(mc.getCsvPayloadInfo(Constants.DEFAULT_CSV_SEPARATOR))
                 .thenReturn(new CsvPayloadInfo(csvPayload.get(0), 8, csvPayload));
-        when(mc.collectToCsv(new String[]{"b", "e", "f", "h"}, Constants.DEFAULT_CSV_SEPARATOR, false))
+        when(mc.collectToCsv(new String[]{"b", "e", "f", "h"}, Constants.DEFAULT_CSV_SEPARATOR, false,false))
                 .thenReturn(csvCollector);
         ArgumentCaptor<String> payloadSetArgumentCaptor = ArgumentCaptor.forClass(String.class);
 
@@ -806,7 +806,7 @@ class CsvToCsvTransformerTest {
                 .thenReturn(csvPayload.subList(1, 3).stream());
         when(mc.getCsvPayloadInfo(Constants.DEFAULT_CSV_SEPARATOR))
                 .thenReturn(new CsvPayloadInfo(csvPayload.get(0), 3, csvPayload));
-        when(mc.collectToCsv(csvPayload.get(0), Constants.DEFAULT_CSV_SEPARATOR, false)).thenReturn(csvCollector);
+        when(mc.collectToCsv(csvPayload.get(0), Constants.DEFAULT_CSV_SEPARATOR, false,false)).thenReturn(csvCollector);
         ArgumentCaptor<String> payloadSetArgumentCaptor = ArgumentCaptor.forClass(String.class);
 
         CsvToCsvTransformer csvToCsvTransformer = new CsvToCsvTransformer();
@@ -837,7 +837,7 @@ class CsvToCsvTransformerTest {
                 .thenReturn(csvPayload.subList(1, 3).stream());
         when(mc.getCsvPayloadInfo(Constants.DEFAULT_CSV_SEPARATOR))
                 .thenReturn(new CsvPayloadInfo(csvPayload.get(0), 8, csvPayload));
-        when(mc.collectToCsv(csvPayload.get(0), Constants.DEFAULT_CSV_SEPARATOR, false)).thenReturn(csvCollector);
+        when(mc.collectToCsv(csvPayload.get(0), Constants.DEFAULT_CSV_SEPARATOR, false,false)).thenReturn(csvCollector);
         ArgumentCaptor<String> payloadSetArgumentCaptor = ArgumentCaptor.forClass(String.class);
 
         CsvToCsvTransformer csvToCsvTransformer = new CsvToCsvTransformer();
@@ -864,7 +864,7 @@ class CsvToCsvTransformerTest {
 
         lenient().when(mc.lookupTemplateParameter(ParameterKey.CUSTOM_VALUE_SEPARATOR)).thenReturn("#");
         when(mc.getCsvArrayStream(0, Constants.DEFAULT_CSV_SEPARATOR)).thenReturn(csvPayload.stream());
-        when(mc.collectToCsv(null, '#', false)).thenReturn(csvCollector);
+        when(mc.collectToCsv(null, '#', false,false)).thenReturn(csvCollector);
         ArgumentCaptor<String> payloadSetArgumentCaptor = ArgumentCaptor.forClass(String.class);
 
         CsvToCsvTransformer csvToCsvTransformer = new CsvToCsvTransformer();
@@ -896,7 +896,7 @@ class CsvToCsvTransformerTest {
         when(mc.getCsvPayloadInfo(Constants.DEFAULT_CSV_SEPARATOR))
                 .thenReturn(new CsvPayloadInfo(csvPayload.get(0), 3, csvPayload));
 
-        when(mc.collectToCsv(csvPayload.get(0), '#', false)).thenReturn(csvCollector);
+        when(mc.collectToCsv(csvPayload.get(0), '#', false,false)).thenReturn(csvCollector);
         ArgumentCaptor<String> payloadSetArgumentCaptor = ArgumentCaptor.forClass(String.class);
 
         CsvToCsvTransformer csvToCsvTransformer = new CsvToCsvTransformer();
